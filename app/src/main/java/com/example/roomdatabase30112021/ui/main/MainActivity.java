@@ -31,21 +31,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }).get(MainViewModel.class);
 
-        mViewModel.getListWorks().observe(this, new Observer<List<WorkEntity>>() {
-            @Override
-            public void onChanged(List<WorkEntity> workEntities) {
-                Log.d("BBB","Total : " + workEntities.size() + "");
-            }
-        });
-        mViewModel.getIdInsert().observe(this, new Observer<Long>() {
-            @Override
-            public void onChanged(Long aLong) {
-                Log.d("BBB","Row " + aLong + "");
-            }
-        });
-
-        mViewModel.queryListWorks();
-
-        mViewModel.insertWork(new WorkEntity("Do work 2","Do some thing 2"));
+//        mViewModel.getListWorks().observe(this, new Observer<List<WorkEntity>>() {
+//            @Override
+//            public void onChanged(List<WorkEntity> workEntities) {
+//                Log.d("BBB","Total : " + workEntities.size() + "");
+//            }
+//        });
+//        mViewModel.getIdInsert().observe(this, new Observer<Long>() {
+//            @Override
+//            public void onChanged(Long aLong) {
+//                Log.d("BBB","Row " + aLong + "");
+//            }
+//        });
+//
+//        mViewModel.queryListWorks();
+//
+//        mViewModel.insertWork(new WorkEntity("Do work 2","Do some thing 2"));
     }
 }
