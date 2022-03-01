@@ -2,26 +2,32 @@ package com.example.roomdatabase30112021.ui.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
 import com.example.roomdatabase30112021.R;
+import com.example.roomdatabase30112021.classes.adapter.WorkAdapter;
 import com.example.roomdatabase30112021.data.model.entities.WorkEntity;
+import com.example.roomdatabase30112021.databinding.ActivityMainBinding;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     MainViewModel mViewModel;
+    WorkAdapter mWorkAdapter;
+    ActivityMainBinding mMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
 
         mViewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
@@ -31,12 +37,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }).get(MainViewModel.class);
 
-//        mViewModel.getListWorks().observe(this, new Observer<List<WorkEntity>>() {
-//            @Override
-//            public void onChanged(List<WorkEntity> workEntities) {
-//                Log.d("BBB","Total : " + workEntities.size() + "");
-//            }
-//        });
+        mMainBinding.setViewModel(mViewModel);
+        mMainBinding.setLifecycleOwner(this);
+
+        mWorkAdapter = new WorkAdapter();
+        mMainBinding.recyclerViewWorks.setAdapter(mWorkAdapter);
+
+        mViewModel.getListWorks().observe(this, new Observer<List<WorkEntity>>() {
+            @Override
+            public void onChanged(List<WorkEntity> workEntities) {
+                if (workEntities != null && workEntities.size() > 0){
+                    mWorkAdapter.updateList(workEntities);
+                }
+            }
+        });
 //        mViewModel.getIdInsert().observe(this, new Observer<Long>() {
 //            @Override
 //            public void onChanged(Long aLong) {
@@ -44,8 +58,14 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //
-//        mViewModel.queryListWorks();
+        mViewModel.queryListWorks();
 //
-//        mViewModel.insertWork(new WorkEntity("Do work 2","Do some thing 2"));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mViewModel.insertWork(new WorkEntity("Do work 6","Do some thing 6"));
+            }
+        },5000);
+
     }
 }
