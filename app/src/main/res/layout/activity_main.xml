@@ -2,27 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.roomdatabase30112021.ui.main.MainViewModel" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.main.MainActivity">
-
-        <TextView
-            android:padding="10dp"
-            android:text="@{String.valueOf(viewModel.listWorks.size())}"
-            android:textSize="25sp"
-            android:id="@+id/textViewDemo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewWorks"

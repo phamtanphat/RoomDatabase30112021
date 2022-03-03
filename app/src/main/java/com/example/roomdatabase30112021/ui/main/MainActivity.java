@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.roomdatabase30112021.R;
 import com.example.roomdatabase30112021.classes.adapter.WorkAdapter;
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).get(MainViewModel.class);
 
-        mMainBinding.setViewModel(mViewModel);
-        mMainBinding.setLifecycleOwner(this);
 
         mWorkAdapter = new WorkAdapter();
         mMainBinding.recyclerViewWorks.setAdapter(mWorkAdapter);
@@ -60,12 +60,28 @@ public class MainActivity extends AppCompatActivity {
 //
         mViewModel.queryListWorks();
 //
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mViewModel.insertWork(new WorkEntity("Do work 6","Do some thing 6"));
-            }
-        },5000);
-
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mViewModel.insertWork(new WorkEntity("Do work 6","Do some thing 6"));
+//            }
+//        },5000);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_plus:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
