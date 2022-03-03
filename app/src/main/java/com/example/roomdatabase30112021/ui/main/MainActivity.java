@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.roomdatabase30112021.R;
 import com.example.roomdatabase30112021.classes.adapter.WorkAdapter;
@@ -60,13 +61,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //
         mViewModel.queryListWorks();
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mViewModel.insertWork(new WorkEntity("Do work 6","Do some thing 6"));
-//            }
-//        },5000);
+
     }
 
     @Override
@@ -87,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onSave(String title, String message) {
-
+                        if (title.isEmpty() && message.isEmpty()){
+                            Toast.makeText(MainActivity.this, "Empty value", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        mViewModel.insertWork(new WorkEntity(title,message));
                     }
                 });
                 break;

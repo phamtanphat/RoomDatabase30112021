@@ -41,7 +41,7 @@ public class AppDialog {
                 dialog.dismiss();
             }
         });
-        mBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String title = mBinding.edittextTitle.getText().toString();
