@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.example.roomdatabase30112021.R;
 import com.example.roomdatabase30112021.classes.adapter.WorkAdapter;
+import com.example.roomdatabase30112021.classes.dialog.AppDialog;
 import com.example.roomdatabase30112021.data.model.entities.WorkEntity;
 import com.example.roomdatabase30112021.databinding.ActivityMainBinding;
 
@@ -78,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item_plus:
+                AppDialog.createDialog(this, new AppDialog.OnListenClickDialog() {
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+                    @Override
+                    public void onSave(String title, String message) {
+
+                    }
+                });
                 break;
         }
         return super.onOptionsItemSelected(item);
