@@ -5,7 +5,7 @@
     <data>
         <variable
             name="work"
-            type="com.example.roomdatabase30112021.data.model.entities.WorkEntity" />
+            type="com.example.roomdatabase.data.model.entities.WorkEntity" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_margin="5dp"
